@@ -1,6 +1,6 @@
 # Exploring AI World Models: Marble vs Overworld Waypoint
 
-Eric Zhang · AI for Creative · November 2026
+Eric Zhang · AI for Creatives · November 2026
 
 ## Goal
 
