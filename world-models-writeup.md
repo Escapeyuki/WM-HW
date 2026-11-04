@@ -95,10 +95,6 @@ Still, I think it is definitely possible for world models to become as good as t
 - Marble's internal design is not published, so the splat explanation rests on World Labs' own description of its outputs.
 - Some research sources were abstracts and preprints that I did not check in detail.
 
-## Process
-
-[Optional, edit or delete: I used Claude (Claude Code with the Chrome extension) for research, planning, and to generate the worlds through my browser. I created the accounts and did the hands-on testing myself.]
-
 ## Sources
 
 - [World Labs: Marble](https://www.worldlabs.ai/blog/marble-world-model)
