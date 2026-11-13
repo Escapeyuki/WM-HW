@@ -47,6 +47,8 @@ All four used **text input** and the **Marble 1.1** model on the Free plan. Expe
 | 3 | An overgrown ruined city at sunset, collapsed skyscrapers covered in vines and moss, a cracked street in the foreground with wildflowers growing through the asphalt, abandoned cars, warm golden light through the buildings, atmospheric haze | Overgrown Ruined City Sunset | ba36e1ad | Skyline Graveyard |
 | 4 | A quiet old library room with a tall standing mirror against one wall, a wooden staircase leading up to a balcony, shelves of books, a large wall sign reading SILENCE PLEASE above a doorway, warm lamplight | Quiet Old Library Room | 71c5ec40 | Silent Library Balcony (made in Make World; the "break it" test) |
 
+The short World IDs in this table do not match the IDs in the share links further down (for example `dfaf87c7` here and `2080994c-…` for the castle). I do not know why. They may be a different identifier shown during generation. Use the share links.
+
 World 4 is the stress test: a mirror, a staircase and readable text are things world models often get wrong.
 
 ### Credits
@@ -61,7 +63,7 @@ World 4 is the stress test: a mirror, a staircase and readable text are things w
 - Two of the scenes opened (The Hive Throne, Mistveil Keep) put a weapon in the player's hands. Starship Bridge, Skyline Graveyard and the library world showed no weapon in their first frames, so the shooter framing is not universal.
 - Esc opens the pause menu (Resume, Worlds, Settings, Link Discord, Sign out).
 - **Limit of the automation:** Claude's key taps and mouse drags cannot hold a key or keep the pointer locked. Moving or dragging the mouse pauses the game, and 15 quick W taps barely moved the view. The turn-around, walk-away-and-return and doorway tests have to be done by hand.
-- Not yet opened: Starship Bridge and Skyline Graveyard.
+- Starship Bridge and Skyline Graveyard were opened later in the session. Their first frames are in the screenshots section.
 - **Library world generated** in Make World with the same prompt as Marble world 4. It took under 30 seconds and Waypoint titled it "Silent Library Balcony." It appears under the **Yours** tab, and the **Public** tab count stayed at 19, so it did not show up as public in the list. Its detail panel shows **Visibility: Unlisted**. The share link is in the share links section below.
 - The Silent Library Balcony thumbnail shows a gold-framed standing mirror on the left, a wooden staircase to a balcony, bookshelves, and a "SILENCE PLEASE" sign hung above the stairs. No weapon is visible in it, unlike the public presets.
 - The generated world's starting frame follows the prompt closely. Whether it holds together once you move is the thing to test by hand.
@@ -76,6 +78,7 @@ Collected 2026-11-02. Nothing was made public and nothing was posted.
 
 - **Where to find it:** Worlds, then the Yours tab, select the world, press SHARE. The dialog shows the link, a COPY button, a **PUBLIC / UNLISTED** switch, and POST, REDDIT and MORE... buttons.
 - **Unlisted** means only people with the link can open it. The switch and the posting buttons were not touched.
+- **Signed-out check (2026-11-12, a second browser with no Overworld session):** the link loads with the page title "Overworld Stream — Silent Library Balcony" but shows a "Sign in to play" dialog. A viewer needs a free account.
 - **Caveat:** after the page reset, opening this link showed the library behind the welcome screen, but pressing Play started the default scene (The Hive Throne). Choosing the world from Worlds, Yours, Play loaded the library correctly. This was not tested from another browser or while signed out.
 - **Addresses seen while loading the public presets** (probably the same kind of link, not checked as share links): Mistveil Keep `https://www.overworld.stream/e/8c9iY2LBacbU`, Starship Bridge `https://www.overworld.stream/e/d5MKb3ik7SDC`, Skyline Graveyard `https://www.overworld.stream/e/PtZDeo4UYjlN`.
 
@@ -91,7 +94,7 @@ Yes, Marble has a share link. Open a world and click the link icon in the bottom
 
 - The library link and its VR link (`https://marble.worldlabs.ai/worldvr/c4854aed-02e4-42e2-aa8d-fe6fd869682a`) were copied from the Share menu. The other three links are the addresses of each world's page. The VR link follows the same pattern but was not checked for them.
 - The Share menu has no visibility setting, so nothing was changed.
-- **Not tested:** whether these links open for someone who is not signed in to your account. Check in a private window before you rely on them.
+- **Signed-out check (2026-11-12, a second browser with no Marble session):** the library link opened and the world could be explored. The viewer showed a "Lower-res mobile version" banner, and clicking the account icon opened the sign-in dialog, which confirms no account was in use. The other three links returned HTTP 200 but were not opened in the viewer.
 
 ## Screenshots
 All files are in the `screenshots` folder.
@@ -155,10 +158,43 @@ The research section further down explains why each of these happens.
 | Castle | Waypoint (Mistveil Keep) | | | | | |
 | Starship | Marble | | | | | |
 | Starship | Waypoint (Starship Bridge) | | | | | |
-| Ruined city | Marble | Held: the same cars appear from both angles, and Return to origin restores the exact start view | | | | `marble-ruined-city-*.jpg` |
+| Ruined city | Marble | Held: the same cars appear from both angles, and Return to origin restores the start view (99.98% of pixels match) | | | | `marble-ruined-city-*.jpg` |
 | Ruined city | Waypoint (Skyline Graveyard) | | | | | |
-| Library | Marble | | | | Sign lettering garbled (reads like "PKE ENNCE") | `marble-library-viewer.jpg` |
-| Library | Waypoint (Make World, text prompt) | | | | Sign lettering garbled; no weapon in view | `waypoint-library-live.jpg` |
+| Library | Marble | | Held: same room and objects after walking forward and back. Camera ended slightly off the start spot. | Failed: camera passes through the closed door into empty black space | Sign lettering garbled (reads like "PKE ENNCE"). Stairs cannot be climbed. Mirror is not a true reflection. Splat streaks near the staircase (`artifacts.png`). | `marble-library-*.jpg` |
+| Library | Waypoint (Make World, text prompt) | | | | Sign: "SILENCE" readable, second word garbled; no weapon in view | `waypoint-library-live.jpg` |
+
+Blank cells were not tested. The Waypoint rows need hands-on play with a recording.
+
+## Follow-up session (2026-11-12)
+Run by Claude in the Claude desktop app's built-in browser, signed out of both tools. Nothing was generated, purchased, posted or changed.
+
+### Method
+- Opened the Marble library share link. The viewer loaded in its lower-resolution mode.
+- Mouse drags turn the camera. Plain key taps did not move it, the same limit as on 2026-11-02. Movement worked by sending a key-down event for W or S from the page, waiting 300 to 500 ms, then sending key-up. Each step was followed by a screenshot.
+- "Return to origin" was pressed before each test.
+
+### Results (Marble, Quiet Old Library Room)
+1. **Doorway.** About 0.9 seconds of forward movement from the origin (three 300 ms steps) reached the door. The next step put the camera through it with no collision, into black. Turning around showed the room from outside as a blurred shell with nothing around it. Files: `marble-library-door-approach.jpg`, `marble-library-door-through.jpg`, `marble-library-outside-shell.jpg`.
+2. **Stairs.** The camera kept its height and moved into the steps and banister, which broke up into soft blobs at close range. Files: `marble-library-stairs-approach.jpg`, `marble-library-stairs-inside.jpg`.
+3. **Mirror.** The image in the mirror shifted with parallax as the camera approached, like a view through an opening, and showed more of a second room. The viewer never appears in it. This suggests scene data placed behind the frame. That is an inference from appearance only. Files: `marble-library-mirror-far.jpg`, `marble-library-mirror-near.jpg`.
+4. **Walk-away-and-return.** Forward 500 ms, then back 500 ms. Same room, mirror, sign and books. The end position was slightly off the start, so the frames are similar but not identical. Files: `marble-library-walk-start.jpg`, `marble-library-walk-return.jpg`.
+5. **Movement slows near surfaces.** Steps of the same length covered less distance close to the wall by the mirror. Not investigated.
+
+### Pixel comparison of the ruined-city screenshots
+Compared with Pillow against `marble-ruined-city-start.jpg` (1514 x 784):
+
+| Compared file | Mean difference per channel (0–255) | Pixels differing by more than 16 |
+|---|---|---|
+| `marble-ruined-city-return-to-origin.jpg` | 0.02 | 0.02% |
+| `marble-ruined-city-turned-1.jpg` | about 20 | 37% |
+| `marble-ruined-city-turned-2.jpg` | about 29 | 50% |
+
+For the return-to-origin pair, every differing pixel falls in one 23 x 29 patch at the bottom right, where the Return to origin button sits. The 3D view itself is unchanged.
+
+### Other checks
+- All 24 links in the three documents returned HTTP 200.
+- `screenshots/artifacts.png` shows the Marble library, not Waypoint: streaks and smears near the staircase, typical of a splat seen from a poorly covered angle. It is 3.7 MB, far larger than the other images.
+- Waypoint could not be tested. The share link needs a sign-in, and the game needs a held key and a locked pointer.
 
 ## Research: Gaussian splats vs world models, and why the results look this way
 Researched 2026-11-02 from vendor pages, model cards and a few papers. Sources are listed at the end.
@@ -226,7 +262,9 @@ Each tool has the half the other lacks. Marble gives persistence without interac
 - [x] All four Marble worlds finished generating.
 - [x] Credit balance confirmed: 680.
 - [x] Opened each Marble world in the viewer and saved screenshots. On the ruined city, the same objects appeared from both angles and Return to origin restored the exact start view.
-- [ ] Run the remaining tests by hand, in both tools.
+- [x] Marble library: doorway, stairs, mirror and walk-away-and-return tests (2026-11-12).
+- [x] Share links checked signed out (2026-11-12).
+- [ ] Run the remaining tests by hand: all of them in Waypoint, and the doorway and walk-away tests on the other three Marble worlds.
 - [ ] Play the three matching Waypoint scenes and Silent Library Balcony by hand (Mistveil Keep and the library load; Starship Bridge and Skyline Graveyard not yet opened).
 - [ ] Install Biome on the 4080 PC and compare it with the browser version.
 - [ ] Record screen captures (Shift-Cmd-5 on Mac; OBS or Xbox Game Bar on the PC).

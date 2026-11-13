@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Last Shift at the Library</title>
+<style>
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #000; color: #fff;
+    font: 16px/1.4 ui-monospace, Menlo, monospace; user-select: none; }
+  canvas { display: block; }
+  #hud { position: fixed; left: 16px; bottom: 14px; right: 16px; display: flex; gap: 24px;
+    text-shadow: 0 1px 3px #000; font-size: 18px; pointer-events: none; }
+  #hud .right { margin-left: auto; }
+  #cross { position: fixed; left: 50%; top: 50%; width: 6px; height: 6px; margin: -3px;
+    border-radius: 50%; background: #fff; box-shadow: 0 0 0 2px #0008; pointer-events: none; }
+  #flash { position: fixed; inset: 0; pointer-events: none; opacity: 0; }
+  #msg { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center;
+    justify-content: center; text-align: center; background: #000b; padding: 16px; cursor: pointer; }
+  #msg h1 { margin: 0 0 8px; font-size: 32px; }
+  #msg p { margin: 4px 0; max-width: 520px; color: #ddd; }
+  #note { position: fixed; left: 16px; top: 12px; font-size: 13px; color: #ccc;
+    text-shadow: 0 1px 3px #000; pointer-events: none; }
+</style>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/",
+    "three-mesh-bvh": "https://cdn.jsdelivr.net/npm/three-mesh-bvh@0.9.1/build/index.module.js",
+    "@sparkjsdev/spark": "https://sparkjs.dev/releases/spark/2.4.0/spark.module.js"
+  }
+}
+</script>
+</head>
+<body>
+<div id="note"></div>
+<div id="cross"></div>
+<div id="flash"></div>
+<div id="hud">
+  <span id="health"></span><span id="shells"></span>
+  <span class="right" id="wave"></span><span id="score"></span>
+</div>
+<div id="msg"><h1>Loading world…</h1></div>
+<script type="module" src="main.js"></script>
+</body>
+</html>
